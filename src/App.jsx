@@ -2,7 +2,7 @@
 import axios from "axios";
 import "./App.css";
 
-const API_URL = "/api";
+const API_URL = import.meta.env.VITE_API_URL || "/api";
 
 const cleanResponse = (data) => {
   if (typeof data !== "string") {
