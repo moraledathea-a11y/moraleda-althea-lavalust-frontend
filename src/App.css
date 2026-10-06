@@ -1,0 +1,1212 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap");
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root {
+  --coral: #ff7777;
+  --coral-dark: #ed5d65;
+  --coral-light: #ff9995;
+
+  --navy: #18203a;
+  --navy-soft: #30364f;
+
+  --cream: #fffaf7;
+  --white: #ffffff;
+
+  --line: #eadfe0;
+  --muted: #77777f;
+
+  --danger: #d95757;
+
+  --shadow: 0 18px 50px rgba(24, 32, 58, 0.08);
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--cream);
+  color: var(--navy);
+  font-family: "DM Sans", Arial, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* =====================================================
+   TOPOGRAPHIC BACKGROUND
+===================================================== */
+
+.topographic {
+  position: absolute;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.topographic::before,
+.topographic::after {
+  content: "";
+  position: absolute;
+  inset: -100px;
+  background-image:
+    repeating-radial-gradient(
+      ellipse at 20% 30%,
+      transparent 0 20px,
+      rgba(255, 255, 255, 0.13) 21px 23px,
+      transparent 24px 43px
+    ),
+    repeating-radial-gradient(
+      ellipse at 70% 70%,
+      transparent 0 28px,
+      rgba(255, 255, 255, 0.09) 29px 31px,
+      transparent 32px 57px
+    );
+  transform: rotate(-8deg) scale(1.2);
+}
+
+.topographic-login {
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  background: var(--coral);
+}
+
+.topographic-app {
+  width: 100%;
+  height: 430px;
+  top: 0;
+  left: 0;
+  background: var(--coral);
+  z-index: 0;
+}
+
+.topographic-app::after {
+  opacity: 0.45;
+}
+
+/* =====================================================
+   LOGIN PAGE
+===================================================== */
+
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--coral);
+}
+
+.login-layout {
+  position: relative;
+  z-index: 2;
+
+  min-height: 100vh;
+  max-width: 1180px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 90px;
+
+  align-items: center;
+
+  padding: 60px 40px;
+}
+
+/* =====================================================
+   LOGIN BRAND
+===================================================== */
+
+.login-brand {
+  color: white;
+}
+
+.brand-mark {
+  width: 68px;
+  height: 68px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 25px;
+
+  border: 2px solid rgba(255, 255, 255, 0.8);
+
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.brand-name {
+  font-size: clamp(54px, 7vw, 92px);
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: -5px;
+}
+
+.login-brand p {
+  margin: 20px 0 0;
+
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  opacity: 0.9;
+}
+
+/* =====================================================
+   LOGIN CARD
+===================================================== */
+
+.login-card {
+  background: var(--white);
+
+  padding: 42px;
+
+  box-shadow: 0 30px 70px rgba(100, 35, 40, 0.2);
+
+  border-radius: 4px;
+}
+
+.login-card-top {
+  display: flex;
+  justify-content: space-between;
+
+  color: var(--coral-dark);
+
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  margin-bottom: 42px;
+}
+
+.login-card h1 {
+  margin: 0;
+
+  font-size: 46px;
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+.login-description {
+  margin: 12px 0 32px;
+
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+
+  color: var(--navy);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.input-group label span {
+  color: var(--muted);
+
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+
+  text-transform: uppercase;
+}
+
+.input-group input {
+  width: 100%;
+
+  height: 50px;
+
+  padding: 0 15px;
+
+  border: 1px solid var(--line);
+  border-radius: 2px;
+
+  outline: none;
+
+  background: white;
+  color: var(--navy);
+
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.input-group input::placeholder {
+  color: #aaa5a7;
+}
+
+.input-group input:focus {
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px rgba(255, 119, 119, 0.12);
+}
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.login-button {
+  width: 100%;
+  height: 52px;
+
+  margin-top: 8px;
+
+  border: 0;
+  border-radius: 2px;
+
+  background: var(--coral);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+  font-weight: 700;
+
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.login-button:hover {
+  background: var(--coral-dark);
+  transform: translateY(-1px);
+}
+
+.login-button span {
+  font-size: 20px;
+}
+
+.login-footer {
+  margin-top: 28px;
+  padding-top: 20px;
+
+  border-top: 1px solid var(--line);
+
+  color: var(--muted);
+
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-message {
+  padding: 12px 15px;
+
+  margin-bottom: 20px;
+
+  border-left: 3px solid var(--danger);
+
+  background: #fff1f1;
+
+  color: #a33f3f;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.app-error {
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 24px;
+}
+
+/* =====================================================
+   MAIN APP
+===================================================== */
+
+.app {
+  position: relative;
+  min-height: 100vh;
+
+  background: var(--cream);
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.app-header {
+  position: relative;
+  z-index: 3;
+
+  height: 88px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 5vw;
+
+  color: white;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-logo {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.header-brand h1 {
+  margin: 0;
+
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+.header-brand p {
+  margin: 2px 0 0;
+
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+
+  opacity: 0.85;
+}
+
+.header-account {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.account-label {
+  font-family: "Space Mono", monospace;
+  font-size: 8px;
+
+  letter-spacing: 0.8px;
+  opacity: 0.75;
+}
+
+.account-info strong {
+  font-size: 13px;
+}
+
+.logout-button {
+  height: 38px;
+
+  padding: 0 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 2px;
+
+  background: transparent;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.logout-button:hover {
+  background: white;
+  color: var(--navy);
+}
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.main-container {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1380px;
+  margin: 0 auto;
+
+  padding: 45px 5vw 50px;
+}
+
+/* =====================================================
+   DASHBOARD HEADING
+===================================================== */
+
+.dashboard-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+
+  color: white;
+}
+
+.page-label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+.dashboard-heading h2 {
+  margin: 0;
+
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+.dashboard-heading p {
+  margin: 10px 0 0;
+
+  font-size: 14px;
+
+  opacity: 0.9;
+}
+
+.inventory-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding-bottom: 5px;
+}
+
+.status-indicator {
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 0.2);
+}
+
+.inventory-status div {
+  display: flex;
+  flex-direction: column;
+}
+
+.inventory-status strong {
+  font-size: 12px;
+}
+
+.inventory-status small {
+  margin-top: 2px;
+
+  font-size: 10px;
+
+  opacity: 0.75;
+}
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  background: white;
+
+  border: 1px solid var(--line);
+
+  box-shadow: var(--shadow);
+
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  min-height: 150px;
+
+  padding: 26px;
+
+  border-right: 1px solid var(--line);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stat-card:last-child {
+  border-right: 0;
+}
+
+.stat-main {
+  background: #fff0ed;
+}
+
+.stat-label {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.8px;
+
+  color: var(--muted);
+}
+
+.stat-card strong {
+  display: block;
+
+  margin-top: 12px;
+
+  font-size: 42px;
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+.stat-card strong.money {
+  font-size: 34px;
+}
+
+.stat-card small {
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+/* =====================================================
+   WORKSPACE
+===================================================== */
+
+.workspace {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+
+  gap: 24px;
+
+  align-items: start;
+}
+
+/* =====================================================
+   PANELS
+===================================================== */
+
+.form-panel,
+.products-panel {
+  background: white;
+
+  border: 1px solid var(--line);
+
+  box-shadow: var(--shadow);
+}
+
+.form-panel {
+  padding: 28px;
+}
+
+.products-panel {
+  min-width: 0;
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-number {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--coral-dark);
+
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.panel-header h3 {
+  margin: 0;
+
+  font-size: 25px;
+  letter-spacing: -0.8px;
+}
+
+.panel-description {
+  margin: 15px 0 25px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.editing-badge {
+  padding: 5px 8px;
+
+  background: #fff0ed;
+
+  color: var(--coral-dark);
+
+  font-family: "Space Mono", monospace;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+/* =====================================================
+   PRODUCT FORM
+===================================================== */
+
+.product-form .input-group {
+  margin-bottom: 18px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+
+  margin-top: 8px;
+}
+
+.primary-button {
+  flex: 1;
+
+  height: 48px;
+
+  padding: 0 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 0;
+  border-radius: 2px;
+
+  background: var(--coral);
+  color: white;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.primary-button:hover {
+  background: var(--coral-dark);
+  transform: translateY(-1px);
+}
+
+.primary-button span {
+  font-size: 17px;
+}
+
+.cancel-button {
+  height: 48px;
+
+  padding: 0 16px;
+
+  border: 1px solid var(--line);
+  border-radius: 2px;
+
+  background: white;
+  color: var(--navy);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cancel-button:hover {
+  background: #faf7f6;
+}
+
+/* =====================================================
+   PRODUCTS HEADER
+===================================================== */
+
+.products-header {
+  padding: 28px 28px 20px;
+}
+
+.products-header > div {
+  position: relative;
+}
+
+.product-count {
+  margin: 6px 0 0;
+
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+.refresh-button {
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid var(--line);
+  border-radius: 2px;
+
+  background: white;
+  color: var(--navy);
+
+  font-size: 20px;
+
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.refresh-button:hover {
+  background: #fff0ed;
+  transform: rotate(20deg);
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-container {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 820px;
+}
+
+thead {
+  background: #faf6f5;
+}
+
+th {
+  padding: 14px 18px;
+
+  border-bottom: 1px solid var(--line);
+
+  color: var(--muted);
+
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+  font-weight: 700;
+
+  text-align: left;
+  text-transform: uppercase;
+
+  letter-spacing: 0.4px;
+
+  white-space: nowrap;
+}
+
+td {
+  padding: 18px;
+
+  border-bottom: 1px solid #f0e9e8;
+
+  color: var(--navy-soft);
+
+  font-size: 12px;
+
+  vertical-align: middle;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr:hover {
+  background: #fffaf8;
+}
+
+.product-id {
+  color: var(--coral-dark);
+
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+}
+
+.table-product-name {
+  color: var(--navy);
+
+  font-size: 13px;
+}
+
+.table-description {
+  color: var(--muted);
+}
+
+.date-cell {
+  color: var(--muted);
+
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+
+  white-space: nowrap;
+}
+
+/* =====================================================
+   QUANTITY
+===================================================== */
+
+.quantity {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 38px;
+  height: 28px;
+
+  padding: 0 9px;
+
+  border-radius: 2px;
+
+  background: #f1f8f3;
+
+  color: #36734a;
+
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+}
+
+.quantity.low {
+  background: #fff0ed;
+  color: var(--danger);
+}
+
+/* =====================================================
+   TABLE ACTIONS
+===================================================== */
+
+.table-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.edit-button,
+.delete-button {
+  height: 32px;
+
+  padding: 0 10px;
+
+  border-radius: 2px;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.edit-button {
+  border: 1px solid var(--line);
+
+  background: white;
+  color: var(--navy);
+}
+
+.edit-button:hover {
+  background: #fff0ed;
+  border-color: #f2caca;
+}
+
+.delete-button {
+  border: 1px solid #f1d1d1;
+
+  background: white;
+  color: var(--danger);
+}
+
+.delete-button:hover {
+  background: #fff1f1;
+}
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-state {
+  min-height: 310px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  text-align: center;
+}
+
+.empty-icon {
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 16px;
+
+  border: 1px solid #f0caca;
+
+  color: var(--coral-dark);
+
+  font-size: 22px;
+}
+
+.empty-state h4 {
+  margin: 0;
+
+  font-size: 18px;
+}
+
+.empty-state p {
+  max-width: 300px;
+
+  margin: 8px 0 0;
+
+  color: var(--muted);
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 35px;
+  padding-top: 20px;
+
+  border-top: 1px solid var(--line);
+
+  color: var(--muted);
+
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+  .login-layout {
+    grid-template-columns: 1fr 400px;
+    gap: 45px;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .form-panel {
+    max-width: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .login-layout {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    padding: 40px 22px;
+  }
+
+  .login-brand {
+    text-align: center;
+  }
+
+  .brand-mark {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .brand-name {
+    font-size: 60px;
+  }
+
+  .login-card {
+    padding: 28px;
+  }
+
+  .app-header {
+    height: auto;
+
+    padding: 20px 22px;
+
+    align-items: flex-start;
+  }
+
+  .header-account {
+    gap: 10px;
+  }
+
+  .account-info {
+    display: none;
+  }
+
+  .main-container {
+    padding: 35px 20px;
+  }
+
+  .dashboard-heading {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 22px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    min-height: 125px;
+
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stat-card:last-child {
+    border-bottom: 0;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .app-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-brand p {
+    display: none;
+  }
+
+  .header-brand h1 {
+    font-size: 18px;
+  }
+
+  .logout-button {
+    height: 34px;
+    padding: 0 12px;
+  }
+
+  .dashboard-heading h2 {
+    font-size: 34px;
+  }
+
+  .form-panel {
+    padding: 22px;
+  }
+
+  .products-header {
+    padding: 22px;
+  }
+
+  .panel-header h3 {
+    font-size: 22px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .cancel-button {
+    width: 100%;
+  }
+}
